@@ -7,6 +7,7 @@ package com.usb.appusb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         saltext=findViewById(R.id.saltext);
     }
 
+
+
+
    public void mostrar(View view){
         mostrarInformacion();
    }
@@ -72,6 +76,34 @@ public class MainActivity extends AppCompatActivity {
         saltext.setText(salida);
 
     }
+
+
+    public void enviarInformacion(){
+        String nombre,sexo,gusto1,gusto2,gusto3,salida,edad;
+        List<String> gustos=getGustos(clibro,cplayer,cdiseno);
+        salida="";
+        nombre=nomtext.getText().toString();
+        edad=edadtext.getText().toString();
+        sexo=getSexo(mascr,femr,nor);
+        gusto1=gustos.get(0);
+        gusto2=gustos.get(1);
+        gusto3=gustos.get(2);
+        /**objeto bundle encapsula la información*/
+        Bundle bundle=new Bundle();
+        bundle.putString("nombre",nombre);
+        bundle.putString("edad",edad);
+        bundle.putString("sexo",sexo);
+        bundle.putString("gusto1",gusto1);
+        bundle.putString("gusto2",gusto2);
+        bundle.putString("gusto3",gusto3);
+        /**intent para abrir nueva actividad**/
+        Intent intent=new Intent(this,RecibirActivity.class);
+        intent.putExtra("bundle",bundle);
+        startActivity(intent);
+
+    }
+
+    public void enviar(View view){enviarInformacion();}
 
     public String getSexo(RadioButton mascr,RadioButton femr,RadioButton nor){
         String sexo="";

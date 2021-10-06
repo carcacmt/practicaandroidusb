@@ -110,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/botonforma"
-                    android:onClick="mostrar"
+                    android:onClick="enviar"
                     android:text="@string/benviart" />
             </LinearLayout>
         </LinearLayout>
